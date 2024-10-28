@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Prian_Ilaria_Lab2.Data;
 using Prian_Ilaria_Lab2.Models;
 
-namespace Prian_Ilaria_Lab2.Pages.Books
+namespace Prian_Ilaria_Lab2.Pages.Authors
 {
     public class DetailsModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace Prian_Ilaria_Lab2.Pages.Books
             _context = context;
         }
 
-        public Book Book { get; set; } = default!;
+        public Author Author { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,17 +28,15 @@ namespace Prian_Ilaria_Lab2.Pages.Books
                 return NotFound();
             }
 
-            Book = await _context.Book
-                .Include(b => b.BookCategories)
-                .ThenInclude(bc => bc.Category)
-                .AsNoTracking()
-                .FirstOrDefaultAsync(m => m.ID == id);
-
-            if (Book == null)
+            var author = await _context.Author.FirstOrDefaultAsync(m => m.ID == id);
+            if (author == null)
             {
                 return NotFound();
             }
-
+            else
+            {
+                Author = author;
+            }
             return Page();
         }
     }

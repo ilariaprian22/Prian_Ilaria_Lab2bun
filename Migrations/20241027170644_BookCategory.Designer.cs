@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Prian_Ilaria_Lab2.Data;
 
@@ -11,9 +12,11 @@ using Prian_Ilaria_Lab2.Data;
 namespace Prian_Ilaria_Lab2.Migrations
 {
     [DbContext(typeof(Prian_Ilaria_Lab2Context))]
-    partial class Prian_Ilaria_Lab2ContextModelSnapshot : ModelSnapshot
+    [Migration("20241027170644_BookCategory")]
+    partial class BookCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
